@@ -1,0 +1,15 @@
+<h1>Soy el index</h1>
+
+<p>Hola mundo</p>
+
+<div>
+  <div>
+    <h1>Lista de usuarios</h1>
+    <div>
+      <%= render @users%>
+    </div>
+    <div>
+      <%=link_to "Crear nuevo usuario", new_user_path%>
+    </div>
+  </div>
+</div>

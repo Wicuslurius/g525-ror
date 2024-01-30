@@ -1,0 +1,24 @@
+<div>
+  <p>Soy el show</p>
+  <div>
+    <h1><%= @user.name%></h1>
+    <p><%= @user.last_name%></p>
+    <p><%= @user.email%></p>
+    <p><%= @user.address %></p>
+    <p><%= @user.living_place%></p>
+    <p><%= @user.observations %></p>
+    <p><%= @user.birthdate %></p>
+
+    <div>
+      <%= link_to "Eliminar", user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Eliminacion de usuario"}%>
+    </div>
+
+    <div>
+      <%= link_to "Editar", edit_user_path(@user)%>
+    </div>
+
+    <div>
+      <%= link_to "Volver", root_path%>
+    </div>
+  </div>
+</div>

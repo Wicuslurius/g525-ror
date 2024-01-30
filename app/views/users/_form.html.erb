@@ -1,0 +1,77 @@
+<div>
+  <div>
+    <%= form_with(model: @user, local: true) do |form| %>
+      <% @user.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+
+      <div>
+        <%= form.label :name%>
+        <br/>
+        <%= form.text_field :name %>
+        <% @user.errors.full_messages_for(:name).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :last_name%>
+        <br/>
+        <%= form.text_field :last_name %>
+        <% @user.errors.full_messages_for(:last_name).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :email%>
+        <br/>
+        <%= form.text_field :email %>
+        <% @user.errors.full_messages_for(:email).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :address%>
+        <br/>
+        <%= form.text_field :address %>
+        <% @user.errors.full_messages_for(:address).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :living_place%>
+        <br/>
+        <%= form.text_field :living_place%>
+        <% @user.errors.full_messages_for(:living_place).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :observations%>
+        <br/>
+        <%= form.text_area :observations%>
+        <% @user.errors.full_messages_for(:observations).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :birthdate%>
+        <br/>
+        <%= form.date_field :birthdate %>
+        <% @user.errors.full_messages_for(:birthdate).each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.submit "Enviar"%>
+      </div>
+
+    <%end%>
+  </div>
+</div>
