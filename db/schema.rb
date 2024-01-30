@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_210442) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_213143) do
   create_table "sexes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
@@ -27,6 +27,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_210442) do
     t.string "living_place"
     t.string "observations"
     t.date "birthdate"
+    t.integer "sex_id", default: 3, null: false
+    t.index ["sex_id"], name: "index_users_on_sex_id"
   end
 
+  add_foreign_key "users", "sexes"
 end
