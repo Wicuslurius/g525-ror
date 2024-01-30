@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Home', type: :feature do
+RSpec.describe 'User', type: :feature do
 
-  context 'cuando abrimos nuesta home view' do
+  context 'cuando abrimos nuesta user view' do
     it 'encontramos el formulario creacion de usuario' do
       visit root_path
       expect(current_path).to eq(root_path)
