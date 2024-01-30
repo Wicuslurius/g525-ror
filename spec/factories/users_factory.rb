@@ -7,5 +7,7 @@ FactoryBot.define do
     living_place { 'casa' }
     observations { 'desarrollador ruby on rails' }
     birthdate { '1994-07-25' }
+
+    association :sex, factory: :sex
   end
 end

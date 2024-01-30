@@ -6,4 +6,6 @@ class User < ApplicationRecord
     validates :living_place, presence: true
     validates :observations, presence: true
     validates :birthdate, presence: true
+
+    belongs_to :sex
 end
