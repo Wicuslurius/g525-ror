@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :find_user, except: [:new, :create, :index]
   def index
     @users = User.all.order(created_at: :desc)
   end
@@ -48,5 +49,9 @@ class UsersController < ApplicationController
               :observations,
               :birthdate
              )
+    end
+
+    def find_user
+      @user = User.find(params[:id])
     end
 end
