@@ -8,6 +8,7 @@
     <p><%= @user.living_place%></p>
     <p><%= @user.observations %></p>
     <p><%= @user.birthdate %></p>
+    <p><%= @sex%></p>
 
     <div>
       <%= link_to "Eliminar", user_path(@user), data: {turbo_method: :delete, turbo_confirm: "Eliminacion de usuario"}%>

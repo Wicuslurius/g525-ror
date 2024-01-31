@@ -69,6 +69,16 @@
       </div>
 
       <div>
+        <%= form.label :sex_id %>
+        <br/>
+        <%list_model = @list%>
+        <%= form.select :sex_id, list_model%>
+        <% @user.errors.full_messages_for(:sex_id).each do |error|%>
+          <p><%= error%></p>
+        <% end %>
+      </div>
+
+      <div>
         <%= form.submit "Enviar"%>
       </div>
 
