@@ -13,7 +13,21 @@
     </div>
   </div>
   <div>
-    <h1>Lista de Usuarios en json</h1>
+    <h2>Lista de Usuarios en json</h2>
     <p><%= @json %></p>
+  </div>
+
+  <div>
+    <h2>Consulta para hacer en mysql</h2>
+    <p>SELECT users.name, 
+              users.last_name, 
+              users.email, 
+              users.address, 
+              users.living_place, 
+              users.observations, 
+              users.birthdate, 
+              sex.description AS sex_description
+       FROM users
+       JOIN sex ON users.sex_id = sex.id</p>
   </div>
 </div>
