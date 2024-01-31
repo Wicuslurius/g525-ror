@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   before_action :find_user, except: [:new, :create, :index]
+  before_action :list_selected , except: [:index, :update, :destroy]
+
   def index
     @users = User.all.order(created_at: :desc)
+    @json = User.all.order(created_at: :desc).as_json
   end
 
   def show
@@ -9,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @list = list_selected
   end
 
   def update
@@ -22,11 +24,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @list = list_selected
   end
 
   def create
-    @user = User.create(user_params)
+    params = user_params
+    allowed_age_for_register(params)
+    @user = User.create(params)
+    
     if @user.save
       redirect_to users_path, notice: "se guardo bien"
     else
@@ -66,10 +70,30 @@ class UsersController < ApplicationController
       invert_hast = new_hash.map{|x| x.invert}
       select_sex = {}
       invert_hast.each{|x| select_sex.merge!(x)}
-      select_sex
+      @list = select_sex
     end
 
     def sex_text(user)
       @sex = Sex.find(user.sex_id).description 
+    end
+
+    def allowed_age_for_register(params)
+      value_year = params['birthdate'].split("-")
+      born_year = value_year[0].to_i
+      actual_year = DateTime.now.strftime('%Y').to_i
+      if user_age(born_year , actual_year)
+        params
+      else
+        params['birthdate'] = nil
+      end
+    end
+
+    def user_age(born_year, actual_year)
+      total = actual_year - born_year
+      if total >= 18
+        return true
+      else
+        return false
+      end
     end
 end
