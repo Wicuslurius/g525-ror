@@ -5,9 +5,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @sex = sex_text(@user)
   end
 
   def edit
+    @list = list_selected
   end
 
   def update
@@ -20,6 +22,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @list = list_selected
   end
 
   def create
@@ -47,11 +50,26 @@ class UsersController < ApplicationController
               :address,
               :living_place,
               :observations,
-              :birthdate
+              :birthdate,
+              :sex_id
              )
     end
 
     def find_user
       @user = User.find(params[:id])
+    end
+
+    def list_selected
+      list = Sex.all.as_json
+      list.map{|x| x.delete('updated_at') && x.delete('created_at')}
+      new_hash = list.map{ |x| new = {x.values.first => x.values.last} } 
+      invert_hast = new_hash.map{|x| x.invert}
+      select_sex = {}
+      invert_hast.each{|x| select_sex.merge!(x)}
+      select_sex
+    end
+
+    def sex_text(user)
+      @sex = Sex.find(user.sex_id).description 
     end
 end
