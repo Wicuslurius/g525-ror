@@ -9,6 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @sex = sex_text(@user)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name", template: 'show.html.erb'   # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def edit
